@@ -4,6 +4,9 @@ import re
 import matplotlib.pyplot as plt
 from collections import Counter
 import numpy as np
+from bidi import algorithm as bidialg
+import arabic_reshaper
+
 
 def is_float(string):
   try:
@@ -28,13 +31,23 @@ actual_words = set_masnavi.difference(set_stop_word)
 masnavi_nsw = [x for x in masnavi_nn if x in actual_words] # no stop word
 
 
-st_in_masnavi= [x for x in masnavi_nsw if x in sw]
-print(len(masnavi_nsw))
-print(len(masnavi_nn))
 
 # Creating the word frequency distribution
 freqdist = nltk.FreqDist(masnavi_nsw)
+freq_dict = list(zip(freqdist.keys(), freqdist.values()))
+freq_dict.sort(key=lambda x: x[1], reverse=True)
+freq_dict = freq_dict[:45]
 
-# Plotting the word frequency distribution
-a = freqdist.tabulate(45)
+labels = [x[0] for x in freq_dict]
+ticks = [bidialg.get_display(arabic_reshaper.reshape (x)) for x in labels]
+values = [x[1] for x in freq_dict]
+index = np.arange(len(values))
+color =['gold']*5+['gray']*(len(index)-5)
+plt.title(bidialg.get_display(arabic_reshaper.reshape ('نمودار بسامد لغات در دیوان شمس')))
+plt.xlabel(bidialg.get_display(arabic_reshaper.reshape ('لغات')))
+plt.ylabel(bidialg.get_display(arabic_reshaper.reshape ('تعداد تکرار')))
 
+plt.bar(index, values, color=color)
+plt.xticks(index,ticks, rotation=60)
+plt.show()
+print(color)

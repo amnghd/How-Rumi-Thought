@@ -36,5 +36,5 @@ print(len(masnavi_nn))
 freqdist = nltk.FreqDist(masnavi_nsw)
 
 # Plotting the word frequency distribution
-a = freqdist.tabulate(20)
+a = freqdist.tabulate(45)
 

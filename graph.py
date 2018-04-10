@@ -18,7 +18,7 @@ with open('persian.txt', 'r', encoding="utf8") as myfile:
     sw = myfile.read().replace('\n', ' ').replace("\u200c","").replace("\ufeff","").replace("."," ").split(' ')# a list of stop words
 
 
-with open('khosrow.txt', 'r', encoding="utf8") as myfile:
+with open('shabestari.txt', 'r', encoding="utf8") as myfile:
     line = myfile.read().replace('\n', ' ').replace(",","").replace(":","").replace("ۀ","ه").replace("-","").replace("،","")
     masnavi = re.split('[\t\s:]+', line)   # a list of stop words
 
@@ -43,7 +43,7 @@ ticks = [bidialg.get_display(arabic_reshaper.reshape (x)) for x in labels]
 values = [x[1] for x in freq_dict]
 index = np.arange(len(values))
 color =['gold']*5+['magenta']*(len(index)-5)
-plt.title(bidialg.get_display(arabic_reshaper.reshape ('نمودار بسامد لغات در خسرو و شیرین نظامی')))
+plt.title(bidialg.get_display(arabic_reshaper.reshape ('نمودار بسامد لغات در اشعار شیخ محمود شبستری')))
 plt.xlabel(bidialg.get_display(arabic_reshaper.reshape ('لغات')))
 plt.ylabel(bidialg.get_display(arabic_reshaper.reshape ('تعداد تکرار')))
 

@@ -1,4 +1,4 @@
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup # importing beautiful soup to take care of the
 import requests
 import time
 import glob
